@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import PlanetCard from './PlanetCard';
+import Pagination from './Pagination';
+import  "./css/App.css";
 
 function App() {
+  const [planets, setPlanets] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    const fetchPlanets = async () => {
+      try {
+        const response = await axios.get(`https://swapi.dev/api/planets/?format=json&page=${currentPage}`);
+        setPlanets(response.data.results);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchPlanets();
+  }, [currentPage]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className='container'>
+        {planets.map(planet => (
+          <PlanetCard key={planet.name} planet={planet} />
+        ))}
+      </div>
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
+    </>
   );
 }
 

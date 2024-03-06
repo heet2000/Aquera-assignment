@@ -1,0 +1,44 @@
+/* PlanetCard.css */
+.planet-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    padding: 15px;
+    width: 33%;
+    max-height: 350px;
+    transition: transform 0.2s ease-in-out;
+  
+    &:hover {
+      transform: scale(1.01);
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+  
+    p {
+      margin: 8px 0;
+    }
+  
+    /* Add more styles as needed */
+  }
+  
+  /* Add responsive styles */
+  @media (min-width: 768px) {
+    .planet-card {
+      width: 30%;
+      margin-right: 2%;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .planet-card {
+      width: 25%;
+      margin-right: 2%;
+    }
+  }
+  
+  /* Add more breakpoints and styles as needed */
+  
